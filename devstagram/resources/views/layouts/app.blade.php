@@ -8,11 +8,28 @@
 
         
     </head>
-    <body >
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/informacion">Informacion</a>
-        </nav>
-        <h1 class=" text-red-400 text-4xl">@yield('body')</h1>
+
+
+    <body class=" bg-gray-100">
+       <header class=" p-5 border-b bg-white shadow">
+        <div class=" container flex mx-auto justify-between items-center">
+            <h1 class=" text-3xl font-black">DevStagram</h1>
+            <nav class=" flex gap-2 items-center">
+                <a class=" font-bold uppercase text-gray-600" href="#">Login</a>
+                <a class=" font-bold uppercase text-gray-600" href="/crear-cuenta">Crear Cuenta</a>
+            </nav>
+        </div> 
+       </header>
+
+       <main class=" container mx-auto mt-10">
+            <h2 class=" font-black text-center text-3xl mb-10">@yield('titulo')</h2>
+            @yield('contenido')
+       </main>
+
+       <footer class=" text-center p-5 text-gray-500 font-bold uppercase">
+            Devstagram - Todos los derechos reservados {{now()->year}}
+       </footer>
     </body>
+
+
 </html>

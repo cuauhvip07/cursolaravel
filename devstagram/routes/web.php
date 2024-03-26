@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('inicio');
+    return view('principal');
 });
 
-Route::get('/informacion', function () {
-    return view('informacion');
+Route::get('/crear-cuenta', function () {
+    return view('auth.register');
 });
+
 
