@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @vite('resources/css/app.css')
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <title>Laravel - @yield('titulo')</title>
+        <script src="{{asset('js/app.js')}}" defer></script>
 
         
     </head>
@@ -26,7 +28,7 @@
             @yield('contenido')
        </main>
 
-       <footer class=" text-center p-5 text-gray-500 font-bold uppercase">
+       <footer class=" text-center p-5 text-gray-500 font-bold uppercase mt-10">
             Devstagram - Todos los derechos reservados {{now()->year}}
        </footer>
     </body>
