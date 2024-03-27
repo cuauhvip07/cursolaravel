@@ -22,7 +22,9 @@ class RegisterController extends Controller
             'name'=>'required|max:30',
             'username'=>'required|max:30|unique:users|min:3',
             'email'=>'required|email|unique:users|max:60',
-            'password'=>'required'
+            'password'=>'required|confirmed|min:5'
         ]);
+
+        dd('Crenado usuario');
     }
 }
