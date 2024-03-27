@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -13,8 +15,13 @@ class PostController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    // Importar el modelo User
+    // $user tiene la informacion de la bd con los datos
+    public function index(User $user)
     {
-      return view('dashboard');
+      // dd($user->username);
+      return view('dashboard',[
+        'user'=>$user
+      ]);
     }
 }

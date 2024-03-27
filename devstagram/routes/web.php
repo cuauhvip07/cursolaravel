@@ -18,6 +18,7 @@ Route::post('/login',[LoggingController::class,'store']);
 
 Route::post('/logout',[LogoutController::class,'store'])->name('logout');
 
-Route::get('/muro',[PostController::class,'index'])->name('posts.index');
+// User es el modelo que tenemos 
+Route::get('/{user:username}',[PostController::class,'index'])->name('posts.index'); // URL dinamica
 
 
