@@ -19,6 +19,7 @@ class PostController extends Controller
   // $user tiene la informacion de la bd con los datos
   public function index(User $user)
   {
+    
     // dd($user->username);
     return view('dashboard',[
       'user'=>$user
