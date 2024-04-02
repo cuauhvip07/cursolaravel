@@ -17,7 +17,11 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // Definir los datos falsos 
+            'titulo' => $this->faker->sentence(5),
+            'descripcion' => $this->faker->sentence(20),
+            'imagen' => $this->faker->uuid() .'.jgp',
+            'user_id' => $this->faker->randomElement([8,12,13])
         ];
     }
 }
