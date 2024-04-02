@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class PostController extends Controller
 {    
@@ -29,5 +30,16 @@ class PostController extends Controller
   public function create()
   {
     return view('posts.create');
+  }
+
+  // Siempre el store tendra el request ya que lo almacena en la bd
+  use ValidatesRequests;  
+  public function store(Request $request)
+  {
+    $this->validate($request,[
+      'titulo'=>'required|max:255',
+      'descripcion'=>'required',
+      'imagen'=>'required'
+    ]);
   }
 }
