@@ -17,4 +17,13 @@ class Post extends Model
         'imagen',
         'user_id'
     ];
+
+    public function user()
+    {
+        // select nos ayuda a traer los datos que queramos solamente
+        return $this->belongsTo(User::class)->select([
+            'name',
+            'username'
+        ]);
+    }
 }

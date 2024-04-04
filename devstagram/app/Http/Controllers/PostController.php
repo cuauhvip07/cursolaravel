@@ -43,12 +43,23 @@ class PostController extends Controller
       'imagen'=>'required'
     ]);
 
-    Post::create([
+    // Otra forma mas para el llenado de informacion
+    // user() viene cuando tu validaz de la sesion
+    // posts es la funcion creada en el modelo user
+    $request->user()->posts()->create([
       'titulo' => $request->titulo,
       'descripcion' => $request->descripcion,
       'imagen'=>$request->imagen,
       'user_id'=>auth()->user()->id
     ]);
+
+    // Otra manera de crear Rrgistros
+    // Post::create([
+    //   'titulo' => $request->titulo,
+    //   'descripcion' => $request->descripcion,
+    //   'imagen'=>$request->imagen,
+    //   'user_id'=>auth()->user()->id
+    // ]);
 
     // Otra forma de crear Registros
     // $post = new Post;
@@ -57,6 +68,8 @@ class PostController extends Controller
     // $post->imagen = $request->imagen;
     // $post->user_id = auth()->user()->id;
     // $post->save();
+
+    
 
     return redirect()->route('posts.index',auth()->user()->username);
 
