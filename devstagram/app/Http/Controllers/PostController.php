@@ -21,10 +21,14 @@ class PostController extends Controller
   // $user tiene la informacion de la bd con los datos
   public function index(User $user)
   {
+    // busqueda del WHERE en la bd
+    // user_id compara con $user->id  y get te trae la informacion 
+    $post = Post::where('user_id',$user->id)->get();
     
     // dd($user->username);
     return view('dashboard',[
-      'user'=>$user
+      'user'=>$user,
+      'posts'=>$post // Se mandan los post a la vista
     ]);
   }
 
