@@ -19,7 +19,7 @@ const dropzone = new Dropzone('#dropzone',{
             imagenPublicada.size = 123
             imagenPublicada.name = document.querySelector('[name="imagen"]').value
 
-            // Codigo de dropzone
+            // Codigo de dropzone para que salga de nuevo la imagen
             this.options.addedfile.call(this,imagenPublicada)
             this.options.thumbnail.call(this,imagenPublicada,`/uploads/${imagenPublicada.name}`)
 
