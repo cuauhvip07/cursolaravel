@@ -4,7 +4,7 @@ Dropzone.autoDiscover = false;
 
 const dropzone = new Dropzone('#dropzone',{
     dictDefaultMessage: 'Sube aqui tu imagen',
-    acceptedFiles: ".png,.jgp,.jpeg,.gif",
+    acceptedFiles: ".jpg,.png,.jpeg,.gif",
     addRemoveLinks: true,
     dictRemoveFile: 'Borrar Archivo',
     maxFiles: 1,
