@@ -23,12 +23,17 @@ class PostController extends Controller
   {
     // busqueda del WHERE en la bd
     // user_id compara con $user->id  y get te trae la informacion 
-    $post = Post::where('user_id',$user->id)->get();
+    // $post = Post::where('user_id',$user->id)->get();
+    // Paginacion
+    $posts = Post::where('user_id',$user->id)->paginate(10);
+
+    // Otra manera para buscar los post pero NO puedes usar paginate
+
     
     // dd($user->username);
     return view('dashboard',[
       'user'=>$user,
-      'posts'=>$post // Se mandan los post a la vista
+      'posts'=>$posts // Se mandan los post a la vista
     ]);
   }
 
@@ -75,7 +80,7 @@ class PostController extends Controller
 
     
 
-    return redirect()->route('posts.index',auth()->user()->username);
+    return redirect()->route('posts.index',auth()->user());
 
   }
 }
