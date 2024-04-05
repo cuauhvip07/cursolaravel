@@ -13,8 +13,8 @@ class PostController extends Controller
   // Proteger la ruta si no esta autenticado
   public function __construct()
   {
-      
-      $this->middleware('auth');
+      // Esta protegido excepto los metodos que pongas
+      $this->middleware('auth')->except(['show','index']);
   }
 
   // Importar el modelo User
