@@ -24,7 +24,7 @@ class PostController extends Controller
     // busqueda del WHERE en la bd
     // user_id compara con $user->id  y get te trae la informacion 
     // $post = Post::where('user_id',$user->id)->get();
-    // Paginacion
+    // Paginacion -> Para que se vea bien la paginacion debes de ponerle estilos en el tailwind
     $posts = Post::where('user_id',$user->id)->paginate(10);
 
     // Otra manera para buscar los post pero NO puedes usar paginate
@@ -77,10 +77,16 @@ class PostController extends Controller
     // $post->imagen = $request->imagen;
     // $post->user_id = auth()->user()->id;
     // $post->save();
-
     
 
     return redirect()->route('posts.index',auth()->user());
 
+  }
+
+  public function show(User $user,Post $post)
+  {
+    return view('posts.show',[
+      'post'=>$post,
+    ]);
   }
 }

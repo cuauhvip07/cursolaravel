@@ -21,6 +21,7 @@ class Post extends Model
     public function user()
     {
         // select nos ayuda a traer los datos que queramos solamente
+        // Despues del belongsTo o cualquier otra relacion, se puede añadir una llave foranea
         return $this->belongsTo(User::class)->select([
             'name',
             'username'
