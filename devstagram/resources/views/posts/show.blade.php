@@ -20,6 +20,21 @@
                 <p class=" text-sm text-gray-500">{{$post->created_at->diffForHumans()}}</p>
                 <p class="mt-5">{{$post->descripcion}}</p>
             </div>
+
+            
+            {{-- Eliminar un post y valida si es el usuario el que la quiere eliminar --}}
+            @auth
+                @if ($post->user_id === auth()->user()->id)
+                    <form action="{{route('posts.destroy',$post)}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" value="Eliminar Publicación" class="bg-red-500 hover:bg-red-600 p-2 rounded text-white font-bold cursor-pointer mt-4">
+                    </form>
+                @endif
+            @endauth
+               
+                
+            
         </div>
 
         <div class=" md:w-1/2 p-5">

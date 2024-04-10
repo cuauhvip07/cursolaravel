@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class PostController extends Controller
@@ -89,5 +91,22 @@ class PostController extends Controller
       'post'=>$post,
       'user'=>$user
     ]);
+  }
+
+  // Eliminar una publicacion
+  public function destroy(Post $post)
+  {
+    // delete es el metodo que estas usando en el PostPolicy
+    Gate::allows('delete',$post);
+    $post->delete();
+
+    // Eliminar la imagen 
+    $imagen_path = public_path('uploads/'. $post->imagen);
+
+    if(File::exists($imagen_path)){
+      unlink($imagen_path);
+    }
+
+    return redirect()->route('posts.index',auth()->user());
   }
 }
