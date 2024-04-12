@@ -18,13 +18,14 @@ class RegisterController extends Controller
 
     use ValidatesRequests;
 
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
 
         // Modificar el request -> se debe de hacer lo menos posible
         // $request->$request->add(['username' => Str::slug($request->username)]);
 
         // Validacion
+        // alpha_dash restringe caracteres especiales
         $this->validate($request,[
             'name'=>'required|max:30',
             'username'=>'required|max:30|unique:users,username|min:3|alpha_dash',
@@ -51,6 +52,9 @@ class RegisterController extends Controller
         auth()->attempt($request->only('email','password'));
 
         // Redireccionar al usuario
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', [
+            auth()->user()->username,
+            // auth()->user()->name
+        ]);
     }
 }
