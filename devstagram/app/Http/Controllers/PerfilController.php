@@ -28,7 +28,8 @@ class PerfilController extends Controller
         // 'in:cliente' forza a que el usuario use ese nombre de perfil y no puede escoger otro
         // El auth().. si tu tienes ese nombre, otra vez lo puedes tomar
         $this->validate($request,[
-            'username'=>['required','max:30','unique:users,username,'.auth()->user()->id,'min:3','alpha_dash','not_in:twitter,editar-perfil']
+            'username'=>['required','max:30','unique:users,username,'.auth()->user()->id,'min:3','alpha_dash','not_in:twitter,editar-perfil'],
+            'email'=>['email','unique:users,email,'.auth()->user()->id],
         ]);
 
         if($request->imagen){
@@ -45,13 +46,23 @@ class PerfilController extends Controller
             // Guarda la imgagen donde se creo la carpeta
             $imagenServidor->save($imagenPath);
         }
+
+        // Verificar si el password anterior es correcto
+        if(auth()->attempt($request->only('password_old'))){
+            return back()->with('mensaje','Password Incorrecto');
+        }
+
         
         // Guardar cambios
+
+        
 
         // Sirve para actualizar primero buscando el id y despues cambiando los valores
         $usuario = User::find(auth()->user()->id);
         $usuario->username = $request->username;
         $usuario->imagen = $nombreImagen ?? auth()->user()->imagen ??'';
+        $usuario->email = $request->email;
+        $usuario->password = $request->password ?? auth()->user()->password;
 
         $usuario->save();
 
