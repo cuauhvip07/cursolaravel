@@ -55,4 +55,30 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    // Almacena los seguidores de un usuario
+
+    public function followers()
+    {
+        // Se te sales de la convencion, especificas el nombre de la tabla, llave foranea del pivote y la relacion con el pivote
+        return $this->belongsToMany(User::class,'followers','user_id','follower_id');
+    }
+
+    // Comprobar si un usuario ya lo esta siguiendo
+    public function siguiendo(User $user)
+    {
+        //se acceder a followers que esta aqui arriba
+        // Contains itera en toda la tabla de followers
+        // El $user->id es del que esta loggeado
+        return $this->followers->contains($user->id);
+    }
+
+    
+    // Almacenar a los que seguimos
+    public function followings()
+    {
+        // Solo se cambia el orden de las columnas
+        return $this->belongsToMany(User::class,'followers','follower_id','user_id');
+    }
+    
 }
