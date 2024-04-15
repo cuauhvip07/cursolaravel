@@ -5,22 +5,22 @@
 @endsection
 
 @section('contenido')
-    
-    @if ($posts->count())
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            @foreach ($posts as $post)
-                <div>
-                    <a href="{{ route('posts.show',['post'=>$post,'user'=>$post->user]) }}">
-                        <img src="{{asset('uploads') . "/" . $post->imagen}}" alt="Imagen del post {{$post->titulo}}">
-                    </a>
-                </div>    
-            @endforeach
-        </div>
+    {{-- listar-post es el nombre del la vista que tenemos en el componente  --}}
+   <x-listar-post >
+    {{-- lo que se coloque aqui dentro se pasa al template de listar-post  --}}
+        <h1>Hola desde el home</h1>
+        <x-slot:title>
+            <header>Este es un</header>
+       </x-slot:title>
+   </x-listar-post>
 
-        <div class="my-10">
-            {{$posts->links()}}
-        </div>
-    @else
-        <p class="text-center">No hay post, sigue a alguien para mostrar sus Posts</p>
-    @endif
+   {{-- Se puede reutilizar el mismo template  --}}
+   {{-- <x-listar-post >
+        <h1>Hola desde el home</h1>
+   </x-listar-post> --}}
+
+   <x-listar-post >
+       
+        <h1>Hola desde el home</h1>
+   </x-listar-post>
 @endsection
