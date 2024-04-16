@@ -10,6 +10,8 @@
         <title>Laravel - @yield('titulo')</title>
         <script src="{{asset('js/app.js')}}" defer></script>
 
+        @livewireStyles
+
         
     </head>
 
@@ -65,6 +67,8 @@
        <footer class=" text-center p-5 text-gray-500 font-bold uppercase mt-10">
             Devstagram - Todos los derechos reservados {{now()->year}}
        </footer>
+
+       @livewireScripts
     </body>
 
 

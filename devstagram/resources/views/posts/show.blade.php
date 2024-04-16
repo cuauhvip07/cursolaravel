@@ -12,7 +12,10 @@
             <div class="p-3 flex items-center gap-x-4">
 
                 @auth
-            {{-- Manda a llamar la funcion del Modelo Post y verifica que este autenticado --}}
+               
+                {{-- El post que esta en la vista se pasa al modulo de livewire de LikePost y despues a la vista de livewire de like-post --}}
+                <livewire:like-post :post="$post" />
+                {{-- Manda a llamar la funcion del Modelo Post y verifica que este autenticado --}}
                     @if ($post->checkLike(auth()->user()))
                         <form action="{{route('posts.likes.destroy',$post)}}" class=" m-0" method="POST">
                             @method('DELETE')
