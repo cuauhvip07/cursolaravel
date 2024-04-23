@@ -39,14 +39,25 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+        <div class="flex justify-between mt-4 my-5">
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <x-link
+             {{-- href lo manda hacia el componte para que sea dinamico, se envian los atributos --}}
+             :href="route('password.request')" 
+            >
+                 ¿ Olvidate tu password ? 
+            </x-link>
+ 
+             <x-link
+                 :href="route('login')"
+             >
+                 Iniciar Sesión
+             </x-link>
+ 
         </div>
+
+        <x-primary-button class="w-full justify-center">
+            {{ __('Crear Cuenta') }}
+        </x-primary-button>
     </form>
 </x-guest-layout>
