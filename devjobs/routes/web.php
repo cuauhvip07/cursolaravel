@@ -11,7 +11,7 @@ Route::get('/', function () {
 // auth -> Tiene que estar autenticado . Verified -> Tiene que estar verificado
 // En el modelo de user se debe de agregar un implements. en el .env se ve como acceder al mail local
 
-Route::get('/dashboard', [VacanteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [VacanteController::class, 'index'])->middleware(['auth', 'verified'])->name('vacantes.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
