@@ -17,7 +17,7 @@ class CrearVacante extends Component
     public $descripcion;
     public $imagen;
 
-    protected $rules = [
+    protected $rules = [  // Obligatoriamente debe de ser rules
         'titulo'=> 'required|string',
         'salario'=>'required',
         'categoria'=>'required',
@@ -27,6 +27,12 @@ class CrearVacante extends Component
         'imagen'=>'required',
 
     ];
+
+    public function crearVacante()
+    {
+        // Si pasa la validacion se pasa a $datos
+        $datos = $this->validate(); // Aplica las reglas de arriba
+    }
 
     public function render()
     {

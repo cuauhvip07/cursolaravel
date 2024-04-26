@@ -1,4 +1,8 @@
-<form action="" class=" md:w-1/2 space-y-5">
+
+
+{{-- Se le debe de añadir el wire:submit.prevent='crearVacante' --}}
+
+<form action="" class=" md:w-1/2 space-y-5" wire:submit.prevent='crearVacante'>
    
     <div>
         <x-input-label 
@@ -14,7 +18,7 @@
         placeholder="Titulo de la vacante"/>
 
         <x-input-error 
-        :messages="$errors->get('email')" 
+        :messages="$errors->get('titulo')" 
         class="mt-2" />
 
     </div>
