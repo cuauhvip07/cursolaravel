@@ -9,7 +9,7 @@
         id="titulo" 
         class="block mt-1 w-full" 
         type="text" 
-        name="titulo" 
+        wire:model="titulo" 
         :value="old('titulo')" 
         placeholder="Titulo de la vacante"/>
 
@@ -25,7 +25,7 @@
         :value="__('Salario Mensual')" />
 
         <select 
-        name="salario" 
+        wire:model="salario" 
         id="salario" 
         class="block text-sm text-gray-500 font-bold uppercase mb-2 w-full">
                 <option value="" disabled selected> -- Seleccione --</option>
@@ -47,10 +47,13 @@
         :value="__('Categoria')" />
 
         <select 
-        name="categoria" 
+        wire:model="categoria" 
         id="categoria" 
         class="block text-sm text-gray-500 font-bold uppercase mb-2 w-full">
-        
+                <option value="" disabled selected> -- Seleccione --</option>
+            @foreach ($categorias as $categoria)
+                <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
+            @endforeach
         </select>
 
         <x-input-error 
@@ -68,7 +71,7 @@
         id="empresa" 
         class="block mt-1 w-full" 
         type="text" 
-        name="empresa" 
+        wire:model="empresa" 
         :value="old('empresa')" 
         placeholder="Empresa: Ej. Netfllix, Uber"/>
 
@@ -87,7 +90,7 @@
         id="ultimo_dia" 
         class="block mt-1 w-full" 
         type="date" 
-        name="ultimo_dia" />
+        wire:model="ultimo_dia" />
 
         <x-input-error 
         :messages="$errors->get('ultimo_dia')" 
@@ -101,7 +104,7 @@
         :value="__('Descripción Puesto')" />
 
         <textarea 
-        name="descripcion" 
+        wire:model="descripcion" 
         id="descripcion" 
         cols="30" 
         placeholder="Descripción general del puesto, experiencia" 
@@ -123,7 +126,7 @@
         id="imagen" 
         class="block mt-1 w-full" 
         type="file" 
-        name="imagen" />
+        wire:model="imagen" />
 
         <x-input-error 
         :messages="$errors->get('imagen')" 
