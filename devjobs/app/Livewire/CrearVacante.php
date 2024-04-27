@@ -58,8 +58,9 @@ class CrearVacante extends Component
         ]);
 
         // Crear un mensaje
-
+        session()->flash('mensaje','La vante se publico correctamente');
         // Redireccionar al usuario
+        return redirect()->route('vacantes.index');
     }
 
     public function render()
