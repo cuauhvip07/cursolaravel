@@ -32,7 +32,7 @@
         wire:model="salario" 
         id="salario" 
         class="block text-sm text-gray-500 font-bold uppercase mb-2 w-full">
-                <option value="" disabled selected> -- Seleccione --</option>
+                <option value=""  selected> -- Seleccione --</option>
             @foreach ($salarios as $salario)
                 <option value="{{$salario->id}}">{{$salario->salario}}</option>
             @endforeach
@@ -54,7 +54,7 @@
         wire:model="categoria" 
         id="categoria" 
         class="block text-sm text-gray-500 font-bold uppercase mb-2 w-full">
-                <option value="" disabled selected> -- Seleccione --</option>
+                <option value=""  selected> -- Seleccione --</option>
             @foreach ($categorias as $categoria)
                 <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
             @endforeach
