@@ -2,7 +2,7 @@
 
 {{-- Se le debe de añadir el wire:submit.prevent='crearVacante' --}}
 
-<form action="" class=" md:w-1/2 space-y-5" wire:submit.prevent='crearVacante'>
+<form action="" class=" md:w-1/2 space-y-5" wire:submit.prevent='editarVacante'>
    
     <div>
         <x-input-label 
@@ -139,6 +139,15 @@
 
     </div>
 
+    <div class="my-5 w-96">
+        <x-input-label 
+        :value="__('Imagen Actual')" />
+
+        {{-- Como se esta guardando en el storage, se debe de dar aacceso unicamente a esa carpeta --}}
+        {{-- Despues se debe hacer un link simbolico, en la terminal poniendo sail artisan storage:link --}}
+        <img src="{{asset('storage/vacantes/'.$imagen)}}" alt="{{'Imagen vacante '.$titulo}}">
+    </div>
+
 
     {{-- Codigo para el preview de una imagen 
     <div class="my-5 w-96">
@@ -149,7 +158,7 @@
     </div> --}}
 
     <x-primary-button>
-        Crear Vacante
+        Guardar Cambios
     </x-primary-button>
 
 
