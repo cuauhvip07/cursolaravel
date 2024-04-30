@@ -130,11 +130,11 @@
         id="imagen" 
         class="block mt-1 w-full" 
         type="file" 
-        wire:model="imagen" 
+        wire:model="imagen_nueva" 
         accept="image/*" /> 
 
         <x-input-error 
-        :messages="$errors->get('imagen')" 
+        :messages="$errors->get('imagen_nueva')" 
         class="mt-2" />
 
     </div>
@@ -149,13 +149,13 @@
     </div>
 
 
-    {{-- Codigo para el preview de una imagen 
+    {{-- Codigo para el preview de una imagen  --}}
     <div class="my-5 w-96">
-        @if ($imagen)
-            Imagen:
-            <img src="{{ $imagen->temporaryUrl()}}" alt="">
+        @if ($imagen_nueva)
+            Imagen Nueva:
+            <img src="{{ $imagen_nueva->temporaryUrl()}}" alt="">
         @endif
-    </div> --}}
+    </div>
 
     <x-primary-button>
         Guardar Cambios
