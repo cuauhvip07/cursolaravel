@@ -14,6 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
+        {{-- Se agregan los estilos --}}
+        @stack('styles') 
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -35,5 +37,7 @@
         </div>
 
         @livewireScripts
+        {{-- Debe ir despues de livwire y lo puedes nombrar como quieras  --}}
+        @stack('scripts')
     </body>
 </html>

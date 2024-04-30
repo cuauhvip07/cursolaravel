@@ -27,13 +27,6 @@ class VacanteController extends Controller
         return view('vacantes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -49,6 +42,7 @@ class VacanteController extends Controller
     public function edit(Vacante $vacante){
  
         // Se debe de importar las librerias que ponga arriba
+        // ::allows es para dejar para el usuario en caso de que la funcion 'update' del Policy se cumpla
         if (Gate::allows('update', $vacante)){
             return view('vacantes.edit', [
                 'vacante' => $vacante
@@ -58,19 +52,4 @@ class VacanteController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

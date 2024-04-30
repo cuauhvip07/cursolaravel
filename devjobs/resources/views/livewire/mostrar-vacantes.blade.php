@@ -29,3 +29,32 @@
         {{$vacantes->links()}}
     </div>
 </div>
+
+{{-- Mandas a llamar los stacks que estan en el app.blade --}}
+@push('scripts')
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        Swal.fire({
+            title: "¿Estas seguro de eliminar la vacante?",
+            text: "Esta acción no se podra revertir",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar",
+            cancelButtonText: "Cancelar"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                title: "Eliminada",
+                text: "La vacante ha sido eliminada",
+                icon: "success"
+                });
+            }
+            });
+
+    </script>
+    
+@endpush
