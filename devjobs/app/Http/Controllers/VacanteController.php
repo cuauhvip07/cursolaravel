@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacante;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller; // Esta para edit
+use Illuminate\Support\Facades\Gate; // Esta para edit
+
+
 
 class VacanteController extends Controller
 {
@@ -42,11 +46,16 @@ class VacanteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vacante $vacante)
-    {
-        return view('vacantes.edit',[
-            'vacante'=>$vacante,
-        ]);
+    public function edit(Vacante $vacante){
+ 
+        // Se debe de importar las librerias que ponga arriba
+        if (Gate::allows('update', $vacante)){
+            return view('vacantes.edit', [
+                'vacante' => $vacante
+            ]);
+        }else{
+            return redirect()->route('vacantes.index');
+        }
     }
 
     /**
