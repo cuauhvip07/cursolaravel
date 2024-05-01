@@ -8,9 +8,9 @@
 
             <p class="font-bold text-sm uppercase text-gray-800 my-3">Ultimo dia para postularse: <span class="normal-case font-normal">{{$vacante->ultimo_dia->toFormattedDateString()}} </span> </p>
 
-            <p class="font-bold text-sm uppercase text-gray-800 my-3">Categoria: <span class="normal-case font-normal">{{$vacante->categoria_id}} </span> </p>
+            <p class="font-bold text-sm uppercase text-gray-800 my-3">Categoria: <span class="normal-case font-normal">{{$vacante->categoria->categoria}} </span> </p>
 
-            <p class="font-bold text-sm uppercase text-gray-800 my-3">Salario: <span class="normal-case font-normal">{{$vacante->salario_id}} </span> </p>
+            <p class="font-bold text-sm uppercase text-gray-800 my-3">Salario: <span class="normal-case font-normal">{{$vacante->salario->salario}} </span> </p>
         </div>
    </div>
 </div>
