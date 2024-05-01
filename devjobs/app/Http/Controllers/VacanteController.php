@@ -16,7 +16,11 @@ class VacanteController extends Controller
      */
     public function index()
     {
-        return view('vacantes.index');
+        // Vacante previene el acceso a todo lo relacionado a ese modelo
+        if(Gate::allows('viewAny',Vacante::class)){
+            return view('vacantes.index');
+        }
+        
     }
 
     /**
