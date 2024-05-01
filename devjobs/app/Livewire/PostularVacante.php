@@ -44,6 +44,8 @@ class PostularVacante extends Component
         // Crear notificacion y email
 
         // Mostar al usiario un mensaje de ok
+        session()->flash('mensaje','Se envio la información correctamente, mucha suerte');
+        return redirect()->back();
     }
 
     public function render()
