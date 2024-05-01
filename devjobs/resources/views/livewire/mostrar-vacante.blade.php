@@ -39,7 +39,7 @@
    {{-- directivas para que un usuario pueda o no ver algunas funciones -> se le pasa el nombre del policy--}}
    {{-- Se le debe de pasar toda la ruta del modelo para que pueda funcionar  --}}
     @cannot('create',App\Models\Vacante::class)
-        <livewire:postular-vacante />
+        <livewire:postular-vacante :vacante="$vacante" />
     @endcannot
   
 </div>

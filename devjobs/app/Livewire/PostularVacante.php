@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Vacante;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -9,10 +10,17 @@ class PostularVacante extends Component
 {
     use WithFileUploads;
     public $cv;
+    public $vacante;
 
     protected $rules = [
         'cv'=>'required|mimes:pdf',
     ];
+
+    public function mount(Vacante $vacante)
+    {
+        // La vacante se lo trae de la vista de postular-vacante y se pasa a este Livewire
+        $this->vacante = $vacante;
+    }
 
     public function postularme()
     {
@@ -24,9 +32,14 @@ class PostularVacante extends Component
         // Almacenar la imagen
         $cv = $this->cv->store('public/cv');
         // str_replace te remplaza el 'public/vacantes que viene como prefijo en la imagen y lo ponemos en ''
-        $datos['imagen'] = str_replace('public/cv/','',$cv);
+        $datos['cv'] = str_replace('public/cv/','',$cv);
 
-        // Crear la vacante
+        // Crear candidato a la vacante
+        // Ya no es necesario la vacante_id gracias a la relacion que estamos mandando a llamar
+        $this->vacante->candidatos()->create([
+            'user_id'=>auth()->user()->id,
+            'cv'=>$datos['cv'],
+        ]);
 
         // Crear notificacion y email
 
