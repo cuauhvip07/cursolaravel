@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class PostularVacante extends Component
 {
+    use WithFileUploads;
     public $cv;
 
     protected $rules = [
@@ -14,9 +16,15 @@ class PostularVacante extends Component
 
     public function postularme()
     {
-        $this->validate();
-
         // Almacenar cv
+
+        $datos = $this->validate(); // Aplica las reglas de arriba
+
+        // $this hace referencia a las propiedades que estan arriba
+        // Almacenar la imagen
+        $cv = $this->cv->store('public/cv');
+        // str_replace te remplaza el 'public/vacantes que viene como prefijo en la imagen y lo ponemos en ''
+        $datos['imagen'] = str_replace('public/cv/','',$cv);
 
         // Crear la vacante
 
