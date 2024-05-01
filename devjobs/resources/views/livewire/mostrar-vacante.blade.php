@@ -34,5 +34,12 @@
         </div>
    @endguest
 
-   
+
+    {{-- Cuando en el policy no tiene un modelo, se le debe de pasar --}}
+   {{-- directivas para que un usuario pueda o no ver algunas funciones -> se le pasa el nombre del policy--}}
+   {{-- Se le debe de pasar toda la ruta del modelo para que pueda funcionar  --}}
+    @cannot('create',App\Models\Vacante::class)
+        <livewire:postular-vacante />
+    @endcannot
+  
 </div>

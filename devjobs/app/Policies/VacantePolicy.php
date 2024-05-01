@@ -27,10 +27,10 @@ class VacantePolicy
     /**
      * Determine whether the user can create models.
      */
-    // public function create(User $user): bool
-    // {
-    //     //
-    // }
+    public function create(User $user): bool
+    {
+        return $user->rol === 2;
+    }
 
     /**
      * Determine whether the user can update the model.

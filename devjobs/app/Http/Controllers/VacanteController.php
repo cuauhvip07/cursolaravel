@@ -16,6 +16,7 @@ class VacanteController extends Controller
      */
     public function index()
     {
+        // Cuando en el policy no esta la instancia de un modelo, se lo debes de pasar en este caso se le pasa la Vacante
         // Vacante previene el acceso a todo lo relacionado a ese modelo
         if(Gate::allows('viewAny',Vacante::class)){
             return view('vacantes.index');
@@ -28,7 +29,10 @@ class VacanteController extends Controller
      */
     public function create()
     {
-        return view('vacantes.create');
+        if(Gate::allows('create',Vacante::class)){
+            return view('vacantes.create');
+        }
+       
     }
 
 
