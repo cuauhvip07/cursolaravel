@@ -5,7 +5,7 @@
         @forelse ( $vacantes as $vacante )
             <div class="p-6 bg-white border-b border-gray-200 md:flex md:justify-between md:items-center">
                 <div class=" space-y-3">
-                    <a href="#" class="text-xl font-bold">{{$vacante->titulo}}</a>
+                    <a href="{{route('vacantes.show',$vacante)}}" class="text-xl font-bold">{{$vacante->titulo}}</a>
                     <p class=" text-sm text-gray-600 font-bold">{{$vacante->empresa}}</p>
                     <p class="text-sm text-gray-500">Último dia: {{$vacante->ultimo_dia->format('d/m/Y')}}</p>
                 </div>
