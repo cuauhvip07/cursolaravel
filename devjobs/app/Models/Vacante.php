@@ -35,4 +35,10 @@ class Vacante extends Model
     {
         return $this->hasMany(Candidato::class);
     }
+
+    // Se especifica ya que vamos a usar el user id 
+    public function reclutador()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
