@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class NotificacionController extends Controller
 {
     /**
@@ -11,6 +12,11 @@ class NotificacionController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dd('Desde notifiacion controller');
+
+        // unreadsNotifications son las notificaciones que no se han visto
+        $notificaciones = auth()->user()->unreadNotifications;
+        return view('notificaciones.index',[
+            'notificaciones'=>$notificaciones,
+        ]);
     }
 }
