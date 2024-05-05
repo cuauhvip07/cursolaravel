@@ -15,6 +15,11 @@ class NotificacionController extends Controller
 
         // unreadsNotifications son las notificaciones que no se han visto
         $notificaciones = auth()->user()->unreadNotifications;
+
+        // Limpiar notificaciones
+        auth()->user()->unreadNotifications->markAsRead();
+
+        // Se pasa la informacion a la vista
         return view('notificaciones.index',[
             'notificaciones'=>$notificaciones,
         ]);
