@@ -7,16 +7,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 // auth -> Tiene que estar autenticado . Verified -> Tiene que estar verificado
 // En el modelo de user se debe de agregar un implements. en el .env se ve como acceder al mail local
 
-Route::get('/dashboard', [VacanteController::class, 'index'])->middleware(['auth', 'verified'])->name('vacantes.index');
+Route::get('/dashboard', [VacanteController::class, 'index'])->middleware(['auth', 'verified','rol.reclutador'])->name('vacantes.index');
 Route::get('/vacantes/create', [VacanteController::class, 'create'])->middleware(['auth', 'verified'])->name('vacantes.create');
 Route::get('/vacantes/{vacante}/edit', [VacanteController::class, 'edit'])->middleware(['auth', 'verified'])->name('vacantes.edit');
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');
-Route::get('/notificaciones',  NotificacionController::class)->name('notificaciones');
+// El middleware se encuentra en el boostrap -> app.php
+Route::get('/notificaciones',  NotificacionController::class)->middleware(['auth','verified','rol.reclutador'])->name('notificaciones');
 
 
 Route::middleware('auth')->group(function () {
