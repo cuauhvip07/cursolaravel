@@ -8,13 +8,17 @@ use Livewire\Component;
 
 class FiltrarVacantes extends Component
 {
+    // Pasar estos valores al componente padre que es el HomeVacante para que pueda buscar las vacantes dependiendo los criterios que se selccionen
+
     public $termino;
     public $salario;
     public $categoria;
 
     public function leerDatosFormulario()
     {
-        dd('Hola');
+      // Para comunicarse con el padre se debe de ocupar dispatch()
+      // Pasar el evento que se hace un dispatch
+      $this->dispatch('terminosBusqueda', $this->termino, $this->categoria, $this->salario);
     }
 
     public function render()
