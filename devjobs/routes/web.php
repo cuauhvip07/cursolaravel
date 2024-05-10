@@ -1,14 +1,13 @@
 <?php
 
 use App\Http\Controllers\CandidatosController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/',HomeController::class)->name('home');
 
 // auth -> Tiene que estar autenticado . Verified -> Tiene que estar verificado
 // En el modelo de user se debe de agregar un implements. en el .env se ve como acceder al mail local
