@@ -10,7 +10,9 @@
                     <div class="md:flex md:justify-between md:items-center py-5 divide-y divide-gray-200">
                         <div class="md:flex-1">
                             <a href="{{route('vacantes.show',$vacante->id)}}" class="text-2xl font-extrabold text-gray-600">{{$vacante->titulo}}</a>
-                            <p class="text-base text-gray-600 mb-3">{{$vacante->empresa}}</p>
+                            <p class="text-base text-gray-600 mb-1">{{$vacante->empresa}}</p>
+                            <p class="text-xs text-gray-600 font-bold mb-1">{{$vacante->categoria->categoria}}</p>
+                            <p class="text-base text-gray-600 mb-1">{{$vacante->salario->salario}}</p>
                             <p class="font-bold text-xs text-gray-600">Último dia para postularse <span class="font-normal">{{$vacante->ultimo_dia->format('d/m/Y')}}</span></p>
                         </div>
                         <div class="mt-5 md:mt-0">

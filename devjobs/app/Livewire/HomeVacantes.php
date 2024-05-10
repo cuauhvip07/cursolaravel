@@ -36,7 +36,18 @@ class HomeVacantes extends Component
 
         $vacantes = Vacante::when($this->termino , function($query){
             $query->where('titulo','LIKE', "%" . $this->termino . "%");
-        })->paginate(20);
+        }) 
+        // se ocupa el orWhere en caso de que no este el titulo, lo busca por empresa
+        ->when($this->termino, function ($query){
+            $query->orWhere('empresa', 'LIKE', "%" .$this->termino . "%");
+        })
+        ->when($this->categoria, function ($query){
+            $query->where('categoria_id', $this->categoria);
+        })
+        ->when($this->salario, function ($query){
+            $query->where('salario_id', $this->salario);
+        })
+        ->paginate(20);
 
         return view('livewire.home-vacantes',[
             'vacantes'=>$vacantes,
