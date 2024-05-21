@@ -1,5 +1,6 @@
 
 import { categorias } from "../../data/categorias"
+import Categoria from "./Categoria"
 
 
 
@@ -15,7 +16,9 @@ export default function Sidebar() {
 
         <div className=" mt-1">
             {categorias.map( categoria => (
-              <p>{categoria.nombre}</p>
+                <Categoria 
+                    categoria={categoria}
+                />
             ))}
         </div>
     
