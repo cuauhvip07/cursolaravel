@@ -17,6 +17,7 @@ export default function Sidebar() {
         <div className=" mt-1">
             {categorias.map( categoria => (
                 <Categoria 
+                    key={categoria.id} // Se debe de pasar un key siempre
                     categoria={categoria}
                 />
             ))}
