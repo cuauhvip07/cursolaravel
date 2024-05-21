@@ -11,7 +11,7 @@ export default function Sidebar() {
             <img 
                 className="w-40" 
                 src="img/logo.svg" 
-                alt="" />
+                alt="Imagen logo" />
         </div>
 
         <div className=" mt-1">
@@ -20,6 +20,14 @@ export default function Sidebar() {
                     categoria={categoria}
                 />
             ))}
+        </div>
+
+        <div className=" mt-5 px-5">
+            <button 
+                type="button"
+                className=" text-center bg-red-500 w-full p-3 font-bold text-white truncate cursor-pointer">
+                Cancelar Orden
+            </button>
         </div>
     
     </aside>
