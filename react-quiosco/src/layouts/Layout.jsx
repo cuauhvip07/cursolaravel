@@ -8,7 +8,7 @@ export default function Layout() {
   return (
     <div className='md:flex'>
       <Sidebar />
-      <main className=' flex-1'>
+      <main className=' flex-1 h-screen overflow-auto bg-gray-50 p-3'>
         {/* Pasamos el COMPONENTE para que podamos poner elementos hijos  */}
         <Outlet /> 
       </main>
