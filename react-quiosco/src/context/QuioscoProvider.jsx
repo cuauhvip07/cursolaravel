@@ -6,9 +6,7 @@ const QuioscoContext = createContext();
 // Toma un prop llamado children
 const QuioscoProvider = ({children}) => {
 
-    const hola = () => {
-        
-    }
+    const hola = "hola mundo";
     return (
         <QuioscoContext.Provider 
             value={{
