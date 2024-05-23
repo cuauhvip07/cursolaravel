@@ -11,11 +11,21 @@ const QuioscoProvider = ({children}) => {
     // 2. Funcion que modifica el state (simepre se utiliza esa funcion)
     // 3. Ocurre en el useState 
     const [categorias, setCategorias ] = useState(categoriasDB);
+    const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
+
+    // Cuando hay un click o submit debe de empezar con handle
+    const handleClickCategoria = () => {
+        console.log('click en categoria')
+    }
+    
    
     return (
         <QuioscoContext.Provider 
             value={{
-                categorias
+                categorias,
+                categoriaActual,
+                handleClickCategoria,
+                
             }}
         >{children}</QuioscoContext.Provider>
     )
