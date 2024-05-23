@@ -14,8 +14,10 @@ const QuioscoProvider = ({children}) => {
     const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
 
     // Cuando hay un click o submit debe de empezar con handle
-    const handleClickCategoria = () => {
-        console.log('click en categoria')
+    // Ese sero es por que si vas a trabaajar con objetos mantente con objetos, no combinar arreglos y objetos, el [0] es para obtener la inforacion de la posicion 0 del arreglo 
+    const handleClickCategoria = id => {
+        const categoria = categorias.filter(categoria => categoria.id === id)[0]
+        setCategoriaActual(categoria)
     }
     
    
@@ -25,7 +27,7 @@ const QuioscoProvider = ({children}) => {
                 categorias,
                 categoriaActual,
                 handleClickCategoria,
-                
+
             }}
         >{children}</QuioscoContext.Provider>
     )
