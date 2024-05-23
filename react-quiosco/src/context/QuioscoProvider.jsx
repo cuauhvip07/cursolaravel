@@ -1,16 +1,21 @@
 // Context API
-import { createContext } from "react"
+import { createContext, useState } from "react"
+import {categorias as categoriasDB} from '../data/categorias'
 
 const QuioscoContext = createContext();
 
 // Toma un prop llamado children
 const QuioscoProvider = ({children}) => {
 
-    const hola = "hola mundo";
+    // 1.Retorna dos valores y lo nombras como quieres
+    // 2. Funcion que modifica el state (simepre se utiliza esa funcion)
+    // 3. Ocurre en el useState 
+    const [categorias, setCategorias ] = useState(categoriasDB);
+   
     return (
         <QuioscoContext.Provider 
             value={{
-                hola
+                categorias
             }}
         >{children}</QuioscoContext.Provider>
     )
