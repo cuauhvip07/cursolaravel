@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom' // Este es un COMPONENTE
 import Modal from 'react-modal';
 import Sidebar from './components/Sidebar'
 import Resumen from './components/Resumen'
+import ModalProducto from './components/ModalProducto';
 import useQuiosco from '../hooks/useQuiosco'
 
 const customStyles = {
@@ -16,6 +17,8 @@ const customStyles = {
   },
 };
 
+// No aparezca error en la consola cuando se de click en aregar, el root es del archivo principal donde se inyecta toda la informacion 
+Modal.setAppElement('#root')
 
 export default function Layout() {
   const { modal, handleClickModal } = useQuiosco();
@@ -32,15 +35,13 @@ export default function Layout() {
         <Resumen />
       </div>
 
-      {/* Si existe el modal se va a mostar esta informacion */}
-      {modal && (
-        // Se hace uso del import de Modal 
-        <Modal isOpen={modal} style={customStyles}>
-          <p>Desde modal</p>
-          <button
-            onClick={handleClickModal}>Cerrar</button>
-        </Modal>
-      )}
+      
+      
+      {/* Se hace uso del import de Modal  */}
+      <Modal isOpen={modal} style={customStyles}>
+        <ModalProducto />
+      </Modal>
+      
     </>
   )
 }
