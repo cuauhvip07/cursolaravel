@@ -43,7 +43,7 @@ const QuioscoProvider = ({children}) => {
                 handleClickModal,
                 producto,
                 handleSetProducto,
-                
+
             }}
         >{children}</QuioscoContext.Provider>
     )

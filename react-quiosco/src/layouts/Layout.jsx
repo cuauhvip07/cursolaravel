@@ -22,7 +22,6 @@ Modal.setAppElement('#root')
 
 export default function Layout() {
   const { modal, handleClickModal } = useQuiosco();
-  console.log(modal)
   return (
     <>
       <div className='md:flex'>
