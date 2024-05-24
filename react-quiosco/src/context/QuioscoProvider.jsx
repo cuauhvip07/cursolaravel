@@ -12,6 +12,7 @@ const QuioscoProvider = ({children}) => {
     // 3. Ocurre en el useState 
     const [categorias, setCategorias ] = useState(categoriasDB);
     const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
+    const [modal, setModal] = useState(false);
 
     // Cuando hay un click o submit debe de empezar con handle
     // Ese sero es por que si vas a trabaajar con objetos mantente con objetos, no combinar arreglos y objetos, el [0] es para obtener la inforacion de la posicion 0 del arreglo 
@@ -19,6 +20,11 @@ const QuioscoProvider = ({children}) => {
         const categoria = categorias.filter(categoria => categoria.id === id)[0]
         // No se modifica direcamente la categoriaActual, se debe de llamar la funcion en este caso setCategoriaActual
         setCategoriaActual(categoria)
+    }
+
+    const handleClickModal = () => {
+        // el !modal hace que cuando este en true lo cambia a false y viceversa 
+        setModal(!modal);
     }
     
    
@@ -28,6 +34,8 @@ const QuioscoProvider = ({children}) => {
                 categorias,
                 categoriaActual,
                 handleClickCategoria,
+                modal,
+                handleClickModal,
 
             }}
         >{children}</QuioscoContext.Provider>
