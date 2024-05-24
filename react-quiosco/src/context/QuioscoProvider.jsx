@@ -17,6 +17,7 @@ const QuioscoProvider = ({children}) => {
     // Ese sero es por que si vas a trabaajar con objetos mantente con objetos, no combinar arreglos y objetos, el [0] es para obtener la inforacion de la posicion 0 del arreglo 
     const handleClickCategoria = id => {
         const categoria = categorias.filter(categoria => categoria.id === id)[0]
+        // No se modifica direcamente la categoriaActual, se debe de llamar la funcion en este caso setCategoriaActual
         setCategoriaActual(categoria)
     }
     
