@@ -1,4 +1,5 @@
 import useQuiosco from "../../hooks/useQuiosco"
+import { formatearDinero } from "../../helpers";
 
 export default function ModalProducto() {
 
@@ -20,6 +21,16 @@ export default function ModalProducto() {
                     </svg>
                </button>
             </div>
+
+            <h1 className=" text-3xl font-bold mt-5">{producto.nombre}</h1>
+            <p className=" mt-5 font-black text-5xl text-amber-500">{formatearDinero(producto.precio)}</p>
+            
+            <button
+                type="button"
+                className=" bg-indigo-600 hover:bg-indigo-800 px-5 py-2 text-white mt-5 font-bold uppercase rounded"
+            >
+                Añadir al pedidio
+            </button>
         </div>
     </div>
   )
