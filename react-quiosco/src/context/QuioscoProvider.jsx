@@ -14,6 +14,7 @@ const QuioscoProvider = ({children}) => {
     const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
     const [modal, setModal] = useState(false);
     const [producto, setProducto] = useState({});
+    const [pedido, setPedido] = useState([]);
 
     // Cuando hay un click o submit debe de empezar con handle
     // Ese sero es por que si vas a trabaajar con objetos mantente con objetos, no combinar arreglos y objetos, el [0] es para obtener la inforacion de la posicion 0 del arreglo 
@@ -43,6 +44,7 @@ const QuioscoProvider = ({children}) => {
                 handleClickModal,
                 producto,
                 handleSetProducto,
+                pedido
 
             }}
         >{children}</QuioscoContext.Provider>
