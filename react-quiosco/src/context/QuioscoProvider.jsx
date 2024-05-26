@@ -32,6 +32,12 @@ const QuioscoProvider = ({children}) => {
     const handleSetProducto = producto => {
         setProducto(producto);
     }
+
+    //  object method solo devuelva lo que tiene producto y no los primeros dos
+    const handleAgregarPedido = ({categoria_id, imagen,  ...producto}) => {
+        setPedido([...pedido, producto]);
+       
+    }
     
    
     return (
@@ -44,7 +50,9 @@ const QuioscoProvider = ({children}) => {
                 handleClickModal,
                 producto,
                 handleSetProducto,
-                pedido
+                pedido,
+                handleAgregarPedido,
+
 
             }}
         >{children}</QuioscoContext.Provider>
