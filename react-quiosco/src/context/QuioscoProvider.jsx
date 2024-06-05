@@ -59,6 +59,14 @@ const QuioscoProvider = ({children}) => {
         setProducto(productoActulizar)
         setModal(!modal)
     }
+
+    const handleEliminarProductoPedido = id => {
+        const pedidoActualizado = pedido.filter(producto => producto.id !== id)
+        setPedido(pedidoActualizado)
+        toast.success('Eliminado del pedido',{
+            droggable:true
+        })
+    }
     
    
     return (
@@ -73,7 +81,8 @@ const QuioscoProvider = ({children}) => {
                 handleSetProducto,
                 pedido,
                 handleAgregarPedido,
-                handleEditarCantidad
+                handleEditarCantidad,
+                handleEliminarProductoPedido
 
 
             }}
