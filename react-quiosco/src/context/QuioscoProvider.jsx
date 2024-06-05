@@ -1,5 +1,5 @@
 // Context API
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect} from "react"
 import {categorias as categoriasDB} from '../data/categorias'
 import { toast } from "react-toastify";
 
@@ -16,6 +16,12 @@ const QuioscoProvider = ({children}) => {
     const [modal, setModal] = useState(false);
     const [producto, setProducto] = useState({});
     const [pedido, setPedido] = useState([]);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        const nuevoTotal = pedido.reduce((total,producto) => total + (producto.precio * producto.cantidad),0)
+        setTotal(nuevoTotal)
+    },[pedido])
 
     // Cuando hay un click o submit debe de empezar con handle
     // Ese sero es por que si vas a trabaajar con objetos mantente con objetos, no combinar arreglos y objetos, el [0] es para obtener la inforacion de la posicion 0 del arreglo 
@@ -82,7 +88,8 @@ const QuioscoProvider = ({children}) => {
                 pedido,
                 handleAgregarPedido,
                 handleEditarCantidad,
-                handleEliminarProductoPedido
+                handleEliminarProductoPedido,
+                total,
 
 
             }}
