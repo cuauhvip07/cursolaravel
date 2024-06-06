@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom'
 import { createRef, useState } from 'react'
 import clienteAxios from '../config/axios'
+import Alerta from '../layouts/components/Alerta'
 
 export default function Registro() {
 
@@ -9,6 +10,8 @@ export default function Registro() {
   const emailRef  = createRef()
   const passwordRef  = createRef()
   const passwordConfirmarionRef  = createRef()
+
+  const [errores, setErrores] = useState([]);
 
   // Enviar los datos POST hacia laravel
   const handleSubmit = async e => {
@@ -25,7 +28,9 @@ export default function Registro() {
       const respuesta = await clienteAxios.post('/api/registro',datos);
       console.log(respuesta);
     } catch (error) {
-      console.log(error);
+      // Object.values te lo pasa a un arreglo
+      // Con un console.log a error se ve la estructura del error.resp....
+      setErrores(Object.values(error.response.data.errors));
     }
   }
 
@@ -35,7 +40,10 @@ export default function Registro() {
       <p>Crea tu cuenta llenando el formulario</p>
 
       <div  className=" bg-white shadow-md rounded-md mt-10 px-5 py-10">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
+
+          {errores ? errores.map((error,id) => <Alerta key={id}>{error}</Alerta>) :null}
+
             <div className=" mb-4">
                 <label 
                     className=" text-slate-800"
