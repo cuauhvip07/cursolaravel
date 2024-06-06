@@ -1,7 +1,7 @@
 // Context API
 import { createContext, useState, useEffect} from "react"
-import {categorias as categoriasDB} from '../data/categorias'
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const QuioscoContext = createContext();
 
@@ -11,8 +11,8 @@ const QuioscoProvider = ({children}) => {
     // 1.Retorna dos valores y lo nombras como quieres
     // 2. Funcion que modifica el state (simepre se utiliza esa funcion)
     // 3. Ocurre en el useState 
-    const [categorias, setCategorias ] = useState(categoriasDB);
-    const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
+    const [categorias, setCategorias ] = useState([]);
+    const [categoriaActual, setCategoriaActual] = useState({});
     const [modal, setModal] = useState(false);
     const [producto, setProducto] = useState({});
     const [pedido, setPedido] = useState([]);
@@ -22,6 +22,24 @@ const QuioscoProvider = ({children}) => {
         const nuevoTotal = pedido.reduce((total,producto) => total + (producto.precio * producto.cantidad),0)
         setTotal(nuevoTotal)
     },[pedido])
+
+    // Consumiendo la informacion de la API con Axios
+
+    const obtenerCategorias = async () => {
+        try {
+            const {data} = await axios('http://localhost:8084/api/categorias')
+            setCategorias(data.data);
+            setCategoriaActual(data.data[0])
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // Mandar a llamar la funcion cuando se cargue
+    useEffect(() => {
+        obtenerCategorias()
+    },[])
+
 
     // Cuando hay un click o submit debe de empezar con handle
     // Ese sero es por que si vas a trabaajar con objetos mantente con objetos, no combinar arreglos y objetos, el [0] es para obtener la inforacion de la posicion 0 del arreglo 
