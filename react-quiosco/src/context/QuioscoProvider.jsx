@@ -27,7 +27,8 @@ const QuioscoProvider = ({children}) => {
 
     const obtenerCategorias = async () => {
         try {
-            const {data} = await axios('http://localhost:8084/api/categorias')
+            // Traer la url que esta en el .env.local 
+            const {data} = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`)
             setCategorias(data.data);
             setCategoriaActual(data.data[0])
         } catch (error) {
