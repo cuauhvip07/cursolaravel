@@ -1,7 +1,7 @@
 // Context API
 import { createContext, useState, useEffect} from "react"
 import { toast } from "react-toastify";
-import axios from "axios";
+import clienteAxios from "../config/axios";
 
 const QuioscoContext = createContext();
 
@@ -27,8 +27,9 @@ const QuioscoProvider = ({children}) => {
 
     const obtenerCategorias = async () => {
         try {
-            // Traer la url que esta en el .env.local 
-            const {data} = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`)
+            // Traer la url que esta en el .env.local y despues se pasa al src/config/axios.js
+            // const {data} = await axios(`${}/api/categorias`)  esta es una manera de usar axios
+            const {data} = await clienteAxios('/api/categorias') ;
             setCategorias(data.data);
             setCategoriaActual(data.data[0])
         } catch (error) {
