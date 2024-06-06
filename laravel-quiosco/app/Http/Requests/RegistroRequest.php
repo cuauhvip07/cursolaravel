@@ -36,4 +36,17 @@ class RegistroRequest extends FormRequest
             ]
         ];
     }
+
+    // Valida ion de los mensajes
+    public function messages()
+    {
+        // El password no se puede personalizar mucho
+        return [
+            'name'=>'El nombre es obligatorio',
+            'email.required'=>'El email es obligatorio',
+            'email.email'=>'El email no es valido',
+            'email.unique'=>'El usuario ya esta registrado',
+            'password'=>'El password debe de contener al menos 8 caracteres, un simbolo y un numero'
+        ];
+    }
 }
