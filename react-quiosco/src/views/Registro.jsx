@@ -1,14 +1,41 @@
 
 import { Link } from 'react-router-dom'
+import { createRef, useState } from 'react'
+import clienteAxios from '../config/axios'
 
 export default function Registro() {
+
+  const nameRef  = createRef()
+  const emailRef  = createRef()
+  const passwordRef  = createRef()
+  const passwordConfirmarionRef  = createRef()
+
+  // Enviar los datos POST hacia laravel
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    // Acceder a los datos si le das console.log(nameRef) aparece current por eso se ocupa ese
+    const datos = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      password_confirmation: passwordConfirmarionRef.current.value
+    }
+    try {
+      const respuesta = await clienteAxios.post('/api/registro',datos);
+      console.log(respuesta);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <h1 className=" text-4xl font-black">Crea tu Cuenta</h1>
       <p>Crea tu cuenta llenando el formulario</p>
 
       <div  className=" bg-white shadow-md rounded-md mt-10 px-5 py-10">
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className=" mb-4">
                 <label 
                     className=" text-slate-800"
@@ -23,6 +50,7 @@ export default function Registro() {
                     className=" mt-2 block p-3 bg-gray-50 w-full"
                     name="name"
                     placeholder="Tu nombre"
+                    ref={nameRef}
                 />
 
             </div>
@@ -41,6 +69,7 @@ export default function Registro() {
                     className=" mt-2 block p-3 bg-gray-50 w-full"
                     name="email"
                     placeholder="Tu email"
+                    ref={emailRef}
                 />
 
             </div>
@@ -59,6 +88,7 @@ export default function Registro() {
                     className=" mt-2 block p-3 bg-gray-50 w-full"
                     name="password"
                     placeholder="Tu password"
+                    ref={passwordRef}
                 />
 
             </div>
@@ -77,6 +107,7 @@ export default function Registro() {
                     className=" mt-2 block p-3 bg-gray-50 w-full"
                     name="password_confirmation"
                     placeholder="Confirma tu password"
+                    ref={passwordConfirmarionRef}
                 />
 
             </div>
