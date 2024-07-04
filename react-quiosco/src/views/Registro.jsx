@@ -25,11 +25,9 @@ export default function Registro() {
     }
     try {
       const respuesta = await clienteAxios.post('/api/registro', datos);
-      console.log(respuesta);
       // Limpia los errores si la solicitud es exitosa
       setErrores([]);
     } catch (error) {
-      console.log(error); // Agrega esto para ver la estructura del error
       if (error.response && error.response.data && error.response.data.errors) {
         setErrores(Object.values(error.response.data.errors));
       } 
