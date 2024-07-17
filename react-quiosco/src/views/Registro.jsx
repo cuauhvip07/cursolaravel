@@ -24,11 +24,16 @@ export default function Registro() {
       password_confirmation: passwordConfirma.current.value
     }
     try {
-      const respuesta = await clienteAxios.post('/api/registro', datos);
+      // Se accede a data para acceder a la informacion de la API y obtener el token
+      // Los datos son los que se envian al back
+      const {data} = await clienteAxios.post('/api/registro', datos);
+      console.log(data.token)
       // Limpia los errores si la solicitud es exitosa
       setErrores([]);
     } catch (error) {
+      // console.log(error)
       if (error.response && error.response.data && error.response.data.errors) {
+        // Los errores vienen en un objeto tipo error entonces se pasan a array 
         setErrores(Object.values(error.response.data.errors));
       } 
     }

@@ -14,7 +14,7 @@ class AuthController extends Controller
         // Valida el registro
         $data = $request->validated();
 
-        // Crear el usuario
+        // Crear el usuario cuando pase la validacion de arriba
         $user = User::create([
             'name'=>$data['name'],
             'email'=>$data['email'],
@@ -24,6 +24,7 @@ class AuthController extends Controller
 
         // Retornar una respuesta 
         return [
+            // En token que esta en parentesis se puede llamar como uno desee
             'token'=> $user->createToken('token')->plainTextToken,
             'user'=>$user
         ];

@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+// Tiene el middleware de que el usuario debe de estar autenticado
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
