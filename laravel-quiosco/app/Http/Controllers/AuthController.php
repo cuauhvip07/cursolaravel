@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegistroRequest;
@@ -30,8 +31,8 @@ class AuthController extends Controller
         ];
     }
 
-    public function login(Request $request){
-        return 'Desde login';
+    public function login(LoginRequest $request){
+        $data = $request->validate();
     }
 
     public function logout(Request $request){

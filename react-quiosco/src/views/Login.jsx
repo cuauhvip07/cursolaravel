@@ -45,6 +45,7 @@ export default function Login() {
         <form
           onSubmit={handleSubmit}
         >
+          {errores ? errores.map((error, id) => <Alerta key={id}>{error}</Alerta>) : null}
             
 
           <div className=" mb-4">
