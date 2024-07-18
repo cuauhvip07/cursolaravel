@@ -43,6 +43,12 @@ class AuthController extends Controller
         }
 
         // Autenticar el usuario
+        $user = Auth::user();
+        return [
+            // En token que esta en parentesis se puede llamar como uno desee
+            'token'=> $user->createToken('token')->plainTextToken,
+            'user'=>$user
+        ];
     }
 
     public function logout(Request $request){

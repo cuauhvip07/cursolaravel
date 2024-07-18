@@ -20,12 +20,13 @@ export default function Login() {
       password: passwordRef.current.value,
     }
     try {
-      // Se accede a data para acceder a la informacion de la API y obtener el token
-      // Los datos son los que se envian al back
+
       const {data} = await clienteAxios.post('/api/login', datos);
-      console.log(data.token)
-      // Limpia los errores si la solicitud es exitosa
+
+      // Se almacena el token en localStorage
+      localStorage.setItem('AUTH_TOKEN',data.token)
       setErrores([]);
+      
     } catch (error) {
       // console.log(error)
       if (error.response && error.response.data && error.response.data.errors) {
