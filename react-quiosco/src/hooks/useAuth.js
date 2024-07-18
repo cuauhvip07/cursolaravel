@@ -1,9 +1,12 @@
 import useSWR from "swr";
 import clienteAxios from "../config/axios";
+import { useNavigate} from 'react-router-dom'
+import { useEffect } from "react";
 
-export const useAuth = (middleware, url) => {
+export const useAuth = ({middleware, url}) => {
 
     const token = localStorage.getItem('AUTH_TOKEN')
+    const navigate = useNavigate()
 
     // useSWR y el cliente axios deben de ser la misma url
     const {data: user,error, mutate} = useSWR('/api/user', () =>
@@ -50,8 +53,16 @@ export const useAuth = (middleware, url) => {
 
     }
 
-    console.log(user)
-    console.log(error)
+    // console.log(user)
+    // console.log(error)
+    // console.log(user)  Aparece que esta en guest por eso asi esta la validacion 
+    
+    // Se manda al usuario a la pagina para generar los pedidos 
+    useEffect(() => {
+        if(middleware === 'guest' && url && user){
+            navigate(url)
+        }
+    },[user,error])
 
     return {
         login,

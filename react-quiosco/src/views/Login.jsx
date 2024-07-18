@@ -12,7 +12,7 @@ export default function Login() {
   // En useAuth se le pasan esos parametrs ya que en el hook se requuieren
   const {login} = useAuth({
     middleware: 'guest',
-    uerl: '/'
+    url: '/'
   })
 
   // Enviar los datos POST hacia Laravel
