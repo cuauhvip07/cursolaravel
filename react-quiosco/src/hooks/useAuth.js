@@ -56,17 +56,25 @@ export const useAuth = ({middleware, url}) => {
     // console.log(user)
     // console.log(error)
     // console.log(user)  Aparece que esta en guest por eso asi esta la validacion 
-    
+
     // Se manda al usuario a la pagina para generar los pedidos 
     useEffect(() => {
         if(middleware === 'guest' && url && user){
             navigate(url)
         }
+
+        // Manda al usuario al login en caso de no haber iniciado la sesion
+        if(middleware === 'auth' && error){
+            navigate('/auth/login')
+        }
     },[user,error])
+
 
     return {
         login,
         registro,
-        logout
+        logout,
+        user,
+        error
     }
 }
