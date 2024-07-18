@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { createRef, useState } from 'react'
-import clienteAxios from '../config/axios'
 import Alerta from '../layouts/components/Alerta'
+import { useAuth } from '../hooks/useAuth'
 
 export default function Login() {
 
@@ -9,6 +9,11 @@ export default function Login() {
   const passwordRef  = createRef()
 
   const [errores, setErrores] = useState([]);
+  // En useAuth se le pasan esos parametrs ya que en el hook se requuieren
+  const {login} = useAuth({
+    middleware: 'guest',
+    uerl: '/'
+  })
 
   // Enviar los datos POST hacia Laravel
   const handleSubmit = async e => {
@@ -19,21 +24,10 @@ export default function Login() {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     }
-    try {
 
-      const {data} = await clienteAxios.post('/api/login', datos);
-
-      // Se almacena el token en localStorage
-      localStorage.setItem('AUTH_TOKEN',data.token)
-      setErrores([]);
-      
-    } catch (error) {
-      // console.log(error)
-      if (error.response && error.response.data && error.response.data.errors) {
-        // Los errores vienen en un objeto tipo error entonces se pasan a array 
-        setErrores(Object.values(error.response.data.errors));
-      } 
-    }
+    // Se le pasan los valores al hook de la funcion de login
+    login(datos,setErrores)
+    
   }
 
 
