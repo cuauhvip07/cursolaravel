@@ -9,7 +9,9 @@ export default function Inicio() {
 
   // Ayuda a filtar los productos y despues pasarlos al state 
   // Consulta SWR
+  // El data trae informacion de la consulta, y el otro data es la informacion de la api
   const fetcher = () => clienteAxios('/api/productos').then(data => data.data);
+  // Se pasa los valores del fetcher para despues con el data de abajo se puedan iterar los valores
   const { data, error, isLoading } = useSWR('/api/productos', fetcher,{
     refreshInterval: 1000
   })
