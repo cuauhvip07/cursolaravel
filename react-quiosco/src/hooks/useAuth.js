@@ -49,8 +49,20 @@ export const useAuth = ({middleware, url}) => {
 
     }
 
-    const logout = () => {
-
+    const logout = async () => {
+        try {
+            await clienteAxios.post('/api/logout',null,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            // Revocamos el token
+            localStorage.removeItem('AUTH_TOKEN')
+            // Forzamos a que revalide 
+            await mutate(undefined)
+        } catch (error) {
+            throw Error(error?.response?.data?.errors)
+        }
     }
 
     // console.log(user)
