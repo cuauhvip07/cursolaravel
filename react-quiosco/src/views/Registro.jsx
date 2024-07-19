@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { createRef, useState } from 'react'
-import clienteAxios from '../config/axios'
 import Alerta from '../layouts/components/Alerta'
+import { useAuth } from '../hooks/useAuth'
+
 
 export default function Registro() {
 
@@ -11,6 +12,8 @@ export default function Registro() {
   const passwordConfirma  = createRef()
 
   const [errores, setErrores] = useState([]);
+  const {registro} = useAuth({middleware: 'guest', url: '/'})
+  
 
   // Enviar los datos POST hacia Laravel
   const handleSubmit = async e => {
@@ -23,20 +26,9 @@ export default function Registro() {
       password: passwordRef.current.value,
       password_confirmation: passwordConfirma.current.value
     }
-    try {
-      // Se accede a data para acceder a la informacion de la API y obtener el token
-      // Los datos son los que se envian al back
-      const {data} = await clienteAxios.post('/api/registro', datos);
-      console.log(data.token)
-      // Limpia los errores si la solicitud es exitosa
-      setErrores([]);
-    } catch (error) {
-      // console.log(error)
-      if (error.response && error.response.data && error.response.data.errors) {
-        // Los errores vienen en un objeto tipo error entonces se pasan a array 
-        setErrores(Object.values(error.response.data.errors));
-      } 
-    }
+    
+
+    registro(datos,setErrores);
   }
 
   return (

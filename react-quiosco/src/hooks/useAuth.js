@@ -45,7 +45,24 @@ export const useAuth = ({middleware, url}) => {
         }
     }
 
-    const registro = () => {
+    const registro = async (datos,setErrores) => {
+
+        try {
+            // Se accede a data para acceder a la informacion de la API y obtener el token
+            // Los datos son los que se envian al back
+            const {data} = await clienteAxios.post('/api/registro', datos);
+            localStorage.setItem('AUTH_TOKEN',data.token)
+            // console.log(data.token)
+            // Limpia los errores si la solicitud es exitosa
+            setErrores([]);
+            await mutate();
+        } catch (error) {
+            // console.log(error)
+            if (error.response && error.response.data && error.response.data.errors) {
+                // Los errores vienen en un objeto tipo error entonces se pasan a array 
+                setErrores(Object.values(error.response.data.errors));
+            } 
+        }
 
     }
 
