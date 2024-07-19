@@ -94,10 +94,10 @@ const QuioscoProvider = ({children}) => {
         })
     }
 
-    const handleSubmitNuevaOrden = async () => {
+    const handleSubmitNuevaOrden = async (logout) => {
         const token = localStorage.getItem('AUTH_TOKEN')
         try {
-            await clienteAxios.post('/api/pedidos',{
+            const {data} = await clienteAxios.post('/api/pedidos',{
                 // Se mandan los valores al back
                 total,
                 // mandar solo la informacion requerida
@@ -113,6 +113,21 @@ const QuioscoProvider = ({children}) => {
                     Authorization: `Bearer ${token}`
                 }
             })
+
+            // hola por que asi lo retorne en el back
+            toast.success(data.hola);
+            
+            setTimeout(() => {
+                setPedido([]);
+            },1000);
+
+            // Cerrar la sesion del usuario
+
+            setTimeout(() => {
+                localStorage.removeItem('AUTH_TOKEN');
+                logout()
+            },3000)
+
 
         } catch (error) {
             console.log(error)

@@ -55,7 +55,7 @@ class PedidoController extends Controller
         PedidoProducto::insert($pedido_producto);
 
         return[
-            'hola' => 'Relizando el pedido'
+            'hola' => 'Pedido realizado correctamente, estara listo en unos minutos'
         ];
     }
 
