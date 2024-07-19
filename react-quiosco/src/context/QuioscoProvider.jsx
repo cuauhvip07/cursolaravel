@@ -99,7 +99,14 @@ const QuioscoProvider = ({children}) => {
         try {
             await clienteAxios.post('/api/pedidos',{
                 // Se mandan los valores al back
-                total
+                total,
+                // mandar solo la informacion requerida
+                productos: pedido.map(producto => {
+                    return {
+                        id: producto.id,
+                        cantidad: producto.cantidad
+                    }
+                }),
             }, // Aqui se envia la peticion autenticada 
             {
                 headers: {
