@@ -98,7 +98,8 @@ const QuioscoProvider = ({children}) => {
         const token = localStorage.getItem('AUTH_TOKEN')
         try {
             await clienteAxios.post('/api/pedidos',{
-
+                // Se mandan los valores al back
+                total
             }, // Aqui se envia la peticion autenticada 
             {
                 headers: {
