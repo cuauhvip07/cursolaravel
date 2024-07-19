@@ -93,6 +93,23 @@ const QuioscoProvider = ({children}) => {
             droggable:true
         })
     }
+
+    const handleSubmitNuevaOrden = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            await clienteAxios.post('/api/pedidos',{
+
+            }, // Aqui se envia la peticion autenticada 
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
    
     return (
@@ -110,7 +127,7 @@ const QuioscoProvider = ({children}) => {
                 handleEditarCantidad,
                 handleEliminarProductoPedido,
                 total,
-
+                handleSubmitNuevaOrden,
 
             }}
         >{children}</QuioscoContext.Provider>
