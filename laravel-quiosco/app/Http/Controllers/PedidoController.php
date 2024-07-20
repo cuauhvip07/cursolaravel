@@ -18,7 +18,7 @@ class PedidoController extends Controller
     {
         // Como obtenemos todo la informacion del JSON se ocupar el with
         // El with manda a traer la relacion que se hizo en el modelo
-        return new PedidoCollection(Pedido::with('user')->where('estado',0)->get());
+        return new PedidoCollection(Pedido::with('user')->with('productos')->where('estado',0)->get());
     }
 
     /**
