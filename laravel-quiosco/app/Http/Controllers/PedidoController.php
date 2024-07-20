@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PedidoCollection;
 use App\Models\Pedido;
 use App\Models\PedidoProducto;
 use Carbon\Carbon;
@@ -15,7 +16,9 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        return 'Todo bien';
+        // Como obtenemos todo la informacion del JSON se ocupar el with
+        // El with manda a traer la relacion que se hizo en el modelo
+        return new PedidoCollection(Pedido::with('user')->where('estado',0)->get());
     }
 
     /**
