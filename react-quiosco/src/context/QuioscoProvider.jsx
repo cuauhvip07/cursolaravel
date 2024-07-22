@@ -26,10 +26,15 @@ const QuioscoProvider = ({children}) => {
     // Consumiendo la informacion de la API con Axios
 
     const obtenerCategorias = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN');
         try {
             // Traer la url que esta en el .env.local y despues se pasa al src/config/axios.js
             // const {data} = await axios(`${}/api/categorias`)  esta es una manera de usar axios
-            const {data} = await clienteAxios('/api/categorias') ;
+            const {data} = await clienteAxios('/api/categorias',{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }) ;
             setCategorias(data.data);
             setCategoriaActual(data.data[0])
         } catch (error) {
