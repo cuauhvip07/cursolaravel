@@ -151,6 +151,20 @@ const QuioscoProvider = ({children}) => {
             console.log(error)
         }
     }
+
+
+    const handleClickProductoAgotado = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            await clienteAxios.put(`/api/productos/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
    
     return (
@@ -170,6 +184,7 @@ const QuioscoProvider = ({children}) => {
                 total,
                 handleSubmitNuevaOrden,
                 handleClickCompleatarPedido,
+                handleClickProductoAgotado,
 
             }}
         >{children}</QuioscoContext.Provider>
